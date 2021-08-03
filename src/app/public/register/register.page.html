@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar class="secondBg">
+    <ion-title class="pageTitle"><img src="assets/img/signup.png" style="height:20px; width:auto; margin-top:10px;" /></ion-title>
+    <ion-buttons slot="start">
+      <ion-button *ngIf="!snapStep" (click)="changeStep()" color="medium">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </ion-button>
+      <ion-back-button *ngIf="snapStep" defaultHref="/home" color="medium" autoHide='false' text="" icon="ios-arrow-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen id="yellowBg">
+  <div class="ion-padding ion-text-center mainDiv" *ngIf="!onLoading">
+    <form *ngIf="snapStep && isSnapSync" (ngSubmit)="changeStep()">
+      <div class="marginUnderSlg"></div>
+      <ion-button color="snapchat">Synchronisation avec Snapchat réussie !</ion-button>
+      <div class="marginUnderSlg"></div>
+      <img src="{{snapUserAvatarUrl}}" class="bmjLogo"><br/>
+      <ion-chip color="snapchat">
+        <ion-icon name="logo-snapchat"></ion-icon>
+        <ion-label>{{snapUserPseudo}}</ion-label>
+      </ion-chip>
+      <div class="marginBetweenInputs"></div>
+      <p class="slogan gradientKick">Choisis ton blaze Kick : </p>
+      <ion-input name="pseudo" minlength="2" maxlength="25" #pseudo="ngModel" [(ngModel)]="register.pseudo" required type="text"></ion-input>
+      <div class="marginUnderSlg"></div>
+      <ion-button expand="full" color="light" type="submit">Continuer</ion-button>
+    </form>
+
+    <form *ngIf="snapStep && !isSnapSync" (ngSubmit)="changeStep()">
+      <div class="marginUnderSlg"></div>
+      <p class="slogan gradientKick">Profite du bitmoji ! Connecte-toi avec</p>
+      <img src="assets/img/bitmojis.png">
+      <div class="marginBetweenInputs"></div>
+      <ion-button color="snapchat" shape="round" (click)="goToSnap()"> <!-- routerLink="/snap-register"-->
+        <img src="assets/icon/snapchat.png" class="snapchatLogo">
+        <span class="snapchat">Snapchat</span>
+      </ion-button>
+      <div class="marginUnderSlg"></div>
+      <h2 class="borderTitle"><span class="spanSlogan"><span class="slogan gradientKick">Ou continue sans Snapchat</span></span></h2>
+      <div class="marginBetweenInputs"></div>
+      <p class="slogan gradientKick">Choisis ton blaze Kick : </p>
+      <ion-input name="pseudo" minlength="2" maxlength="25" #pseudo="ngModel" [(ngModel)]="register.pseudo" required type="text" placeholder="Ton blaze"></ion-input>
+      <div class="marginBetweenInputs"></div>
+      <ion-button expand="full" color="light" type="submit">Continuer</ion-button>
+    </form>
+
+    <form (ngSubmit)="registerForm()" *ngIf="!snapStep">
+      <p class="slogan gradientKick">{{slogan}}</p>
+      <div class="marginBetweenInputs"></div>
+      <img *ngIf="!isSnapSync" src="assets/img/mainLogo.png" class="mainLogo">
+      <img *ngIf="isSnapSync" src="{{snapUserAvatarUrl}}" class="bmjLogo" />
+      <div class="marginUnderSlg"></div>
+      <p class="slogan"><ion-text>{{userPseudo}}</ion-text></p>
+      <div class="marginUnderSlg"></div>
+      <!-- USERNAME INPUT -->
+      <ion-text color="light">@</ion-text><ion-input name="username" type="text" [pattern]="usernamePattern" #username="ngModel" [(ngModel)]="register.username" required (ionFocus)="usernameInpFoc()" (ionBlur)="usernameInpBlur()" class="usernameInput bgInput" placeholder="{{usernameInput}}"></ion-input>
+      <ion-icon *ngIf = "username.errors?.required" style="color:transparent;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!username.errors?.pattern && !username.errors?.required && !wrongUsername" color="success" name="checkmark-circle"></ion-icon>
+      <ion-icon *ngIf = "username.errors?.pattern || wrongUsername" color="danger" name="close-circle"></ion-icon>
+      <p class="inputMsg" *ngIf="usernameOnFocus">{{usernameMsg}}</p>
+      <div class="marginBetweenInputs"></div>
+
+      <!-- EMAIL INPUT -->
+      <ion-input name="email" type="email" [pattern]="emailPattern" #email="ngModel" [(ngModel)]="register.email" required (ionFocus)="emailInpFoc()" (ionBlur)="emailInpBlur()" placeholder="{{emailInput}}" class="emailInput bgInput"></ion-input>
+      <ion-icon *ngIf = "email.errors?.required" style="color:transparent;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!email.errors?.pattern && !email.errors?.required && !wrongMail" color="success" name="checkmark-circle"></ion-icon>
+      <ion-icon *ngIf = "email.errors?.pattern || wrongMail" color="danger" name="close-circle"></ion-icon>
+      <p class="inputMsg" *ngIf="emailOnFocus">{{emailMsg}}</p>
+      <div class="marginBetweenInputs"></div>
+
+      <!-- PASSWORD INPUT -->
+      <ion-input name="password" type="password" [pattern]="passwordPattern" #password="ngModel" [(ngModel)]="register.password" required (ionFocus)="passwordInpFoc()" (ionBlur)="passwordInpBlur()" placeholder="{{passwordInput}}" class="passInput bgInput"></ion-input>
+      <ion-icon *ngIf = "password.errors?.required" style="color:transparent;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!password.errors?.pattern && !password.errors?.required" color="success" name="checkmark-circle"></ion-icon>
+      <ion-icon *ngIf = "password.errors?.pattern" color="danger" name="close-circle"></ion-icon>
+
+      <!-- CONFIRM PASSWORD INPUT -->
+      <ion-input name="confirmPassword" type="password" [pattern]="passwordPattern" #passwordConfirm="ngModel" [(ngModel)]="register.passwordConfirm" required (ionFocus)="passwordInpFoc()" (ionBlur)="passwordInpBlur()" (ionChange)="passwordConfChange()" placeholder="{{passwordConfirmInput}}" class="passInput bgInput"></ion-input>
+      <ion-icon *ngIf = "passwordConfirm.errors?.required" style="color:transparent;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!passwordConfirm.errors?.pattern && !passwordConfirm.errors?.required && passwordMatches" color="success" name="checkmark-circle"></ion-icon>
+      <ion-icon *ngIf = "passwordConfirm.errors?.pattern && !passwordMatches" color="danger" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!passwordConfirm.errors?.pattern && !passwordMatches && !passwordConfirm.errors?.required" color="danger" name="close-circle"></ion-icon>
+      <p class="inputMsg" *ngIf="passwordOnFocus">{{passwordMsg}}</p>
+      <div class="marginBetweenInputs"></div>
+      <!-- SUBMIT -->
+      <ion-button *ngIf="!passwordConfirm.errors?.pattern && !passwordConfirm.errors?.required && !password.errors?.pattern && !password.errors?.required && !email.errors?.pattern && !email.errors?.required && !username.errors?.pattern && !username.errors?.required && passwordMatches && !wrongMail && !wrongUsername && !logError" expand="full" color="light" type="submit">{{loginBtn}}</ion-button>
+      <ion-button *ngIf="passwordConfirm.errors?.pattern || passwordConfirm.errors?.required || password.errors?.pattern || password.errors?.required || email.errors?.pattern || email.errors?.required || username.errors?.pattern || username.errors?.required || !passwordMatches" expand="full" color="dark" disabled>{{loginBtn}}</ion-button>
+      <ion-button disabled *ngIf="wrongMail" expand="full" color="danger">{{wrongMailMsg}}</ion-button>
+      <ion-button disabled *ngIf="wrongUsername" expand="full" color="danger">{{wrongUsernameMsg}}</ion-button>
+      <ion-button disabled *ngIf="logError" expand="full" color="danger">{{logErrorMsg}}</ion-button>
+      <div class="marginBetweenInputs"></div>
+      <h2 class="inputMsg">Déjà un compte ? <ion-text color="success" routerLink="/login">Connexion</ion-text> ou <ion-text color="success" routerLink="/reset-password">Mot de passe oublié ?</ion-text></h2>
+      <div class="marginBetweenInputs"></div>
+    </form>
+
+    <!-- CGU -->
+    <div class="separator">
+      <p class="footerFormMsg">{{signupMsg}} <br><a href="http://kickapp.fr/cgu"><ion-text color="success">{{signupLink}} <ion-icon name="open"></ion-icon></ion-text></a></p>
+    </div>
+  </div>
+  <img *ngIf="onLoading" src="assets/img/loading.gif" class="loadingImg" />
+  <app-footer></app-footer>
+</ion-content>

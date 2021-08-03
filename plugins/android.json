@@ -1,0 +1,68 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-filechooser": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "kickapp.fr"
+    },
+    "ionic-plugin-deeplinks": {
+      "URL_SCHEME": "kick",
+      "DEEPLINK_SCHEME": "https",
+      "DEEPLINK_HOST": "kickapp.app",
+      "ANDROID_PATH_PREFIX": "/",
+      "ANDROID_2_PATH_PREFIX": "/",
+      "ANDROID_3_PATH_PREFIX": "/",
+      "ANDROID_4_PATH_PREFIX": "/",
+      "ANDROID_5_PATH_PREFIX": "/",
+      "DEEPLINK_2_SCHEME": " ",
+      "DEEPLINK_2_HOST": " ",
+      "DEEPLINK_3_SCHEME": " ",
+      "DEEPLINK_3_HOST": " ",
+      "DEEPLINK_4_SCHEME": " ",
+      "DEEPLINK_4_HOST": " ",
+      "DEEPLINK_5_SCHEME": " ",
+      "DEEPLINK_5_HOST": " ",
+      "PACKAGE_NAME": "kickapp.fr"
+    }
+  },
+  "dependent_plugins": {}
+}

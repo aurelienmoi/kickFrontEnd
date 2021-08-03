@@ -1,0 +1,13 @@
+<ion-toolbar class="kickBg">
+  <ion-segment color="medium">
+    <ion-segment-button checked value="home" (click)="onMain()">
+      <ion-label color="light">Accueil</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="library" (click)="onLibrary()">
+      <ion-label color="light">Musiques</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
+
+<app-main *ngIf="isOnMain"></app-main>
+<app-library-profil *ngIf="isOnLibrary"></app-library-profil>

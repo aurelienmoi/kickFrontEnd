@@ -1,0 +1,11 @@
+<ion-card-subtitle slogan gradientKick componentTitle>Carte Kick</ion-card-subtitle>
+<div class="mapContainer" (click)="openFullMap()">
+  <div class="onMap" (click)="openFullMap()">
+    <img [src]="bitmojiLink" class="bmjLogo"/>
+    <ion-text color="medium" class="locLabel">
+      <span style="font-size:10px;">à Lyon, France</span>
+    </ion-text>
+    <div class="bottomDiv" style="padding-top:10px;"><p class="slogan gradientKick">44 rappeurs dans cette ville</p></div>
+  </div>
+  <div class="dashboardMap" id="dashboardMap"></div>
+</div>

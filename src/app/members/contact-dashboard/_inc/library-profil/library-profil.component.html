@@ -1,0 +1,31 @@
+<li *ngFor = "let music of libraryTest">
+  <div class="musicItem">
+    <a [routerLink]="['/musicPlayer',music.musicId]">
+      <div class="inlineBlock coverBlock">
+        <img src="assets/img/defaultCover.png" />
+      </div>
+      <div class="inlineBlock infosBlock">
+        <p style="width:90px; white-space:nowrap; overflow: hidden;">
+          <span class="musicLabel">{{music.name}}</span><br />
+          <span class="artistLabel">Artiste</span>
+        </p>
+      </div>
+      <div class="inlineBlock statsBlock">
+        <p>
+          <span class="artistLabel" style="margin-bottom:-20px;">974 streams <ion-progress-bar color="success" value="0.5"></ion-progress-bar></span>
+        </p>
+      </div>
+    </a>
+    <div class="inlineBlock controlBlock">
+      <p>
+        <span class="musicLabel"><a><ion-icon class="marginRight" name="heart-empty"></ion-icon></a></span>
+        <a (click)="presentActionSheet()"><ion-icon name="more"></ion-icon></a>
+      </p>
+    </div>
+  </div>
+</li>
+<div *ngIf="!libraryTest.length">
+  <ion-icon class="infoIcon" name="information-circle-outline"></ion-icon>
+  <p>Ce Kicker n'a pas encore mis de musique en ligne !</p>
+</div>
+

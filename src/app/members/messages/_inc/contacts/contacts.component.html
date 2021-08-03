@@ -1,0 +1,84 @@
+<ion-list>
+  <ion-list-header class="listHeader">
+    Conversations récentes
+  </ion-list-header>
+  <div *ngFor="let user of users">
+    <ion-item (click)="presentModalMessaging(user._id)"> <!--*ngIf="checkInArray(userArr,user._id)"  thiss condition was here but not following isnt-->
+      <ion-avatar slot="start">
+        <img class="avatar" src="assets/img/bitmoji.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{user.pseudo}}</h2>
+        <p>{{user.lastMessage}}</p>
+      </ion-label>
+
+      <!-- <a class="iconSize" [routerLink]="['/messaging', user.username]">
+        <ion-icon name="chatboxes" class="marginRight_5"></ion-icon>
+      </a>
+      <a class="iconSize" [routerLink]="['/map']">
+      <ion-icon name="globe" class="marginRight_5"></ion-icon>
+      </a>
+      <a class="iconSize" *ngIf="!checkInArray(userArr,user._id)" (click)="followUser(user)"><ion-icon name="person-add" class="marginRight_5"></ion-icon></a>        
+      <a class="iconSize" *ngIf="checkInArray(userArr,user._id)" (click)="unfollowUser(user)"><ion-icon name="close" class="marginRight_5"></ion-icon></a> -->
+    </ion-item>
+  </div>
+</ion-list>
+
+
+  <!-- Skeleton screen -->
+<div *ngIf="!users">
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</div>

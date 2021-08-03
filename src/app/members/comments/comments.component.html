@@ -1,0 +1,50 @@
+<app-top-toolbar></app-top-toolbar>
+<ion-header>
+  <ion-toolbar class="kickBg">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard" color="light" autoHide='false' text="" icon="ios-arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="width100 ion-text-center mainDiv"
+    style="background-image:url(assets/img/bgtest.jpg); min-height:100vh; background-size:cover; background-attachment: fixed;">
+    <div class="container" style="margin-top :30px">
+      <div class="col s12 m8 l9">
+        <div class="card">
+          <ul class="collection">
+            <li class="collection-item">
+              <span class="post">{{post}}</span>
+            </li>
+          </ul>
+        </div>
+
+        <ion-card class="formDiv ios hydrated ">
+          <div class="card-content">
+            <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+
+              <textarea formControlName="comment" id="textarea1" class="materialize-textarea"></textarea>
+              <ion-button type="submit" color='dark' [disabled]='commentForm.invalid'>
+                add comment
+              </ion-button>
+
+            </form>
+          </div>
+        </ion-card>
+
+        <ion-card>
+          <ul class="col s12 m10" *ngFor="let comment of commentsArray">
+            <div class="bmjContainer">
+              <img src="assets/img/bitmoji.png" alt="" class="bmjLogo">
+            </div>
+            <span class="title"> {{comment.username}}</span>
+            <p class="time">{{timeFromNow(comment.createdAt)}}</p>
+            <p class="postComment">{{comment.comment}}</p>
+          </ul>
+        </ion-card>
+
+      </div>
+    </div>
+  </div>
+</ion-content>

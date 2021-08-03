@@ -1,0 +1,81 @@
+<ion-header *ngIf="activeTrack">
+  <ion-toolbar class="kickBg">
+    <ion-title class="slogan whiteSmoke">{{activeTrack.name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="stop()">
+        <ion-icon color="primary" slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!--<ion-button (click) = "play()">start</ion-button>
+<ion-button (click) = 'pause()'> pause</ion-button>
+<ion-button (click) = 'goto500()'> pause</ion-button>
+<ion-col size='12'>
+  <ion-range #range [(ngModel)]="progress2" max="100" colo="success" (touchend)="seek2()" (mouseup)="seek2()">
+  </ion-range>-->
+<ion-header *ngIf="!activeTrack">
+  <ion-toolbar class="kickBg">
+    <ion-title class="slogan whiteSmoke">Ma playlist</ion-title>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/dashboard">
+        <ion-icon color="primary" slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="kickBg">
+  <div class="kickBg ion-text-center mainDiv">
+    <div class="my-overlay" *ngIf="showOverlay">
+      <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+    </div>
+    <ion-list class="kickBg" *ngIf="!activeTrack">
+      <ion-item-sliding class="kickBg" *ngFor="let track of playlist" >
+        <ion-item class="kickBg" (click)="start(track)" >
+          <ion-label [color]="track == activeTrack ? 'success' : 'light' ">
+            {{track.name}}
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)= "deleteFromPlaylist(track.name)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <img *ngIf="activeTrack" src="/assets/img/cover.jpg" />
+
+    <ion-toolbar *ngIf="activeTrack" class="kickBg">
+      <ion-row>
+        <ion-col size="12" class="ion-text-center whiteColor">
+          Artiste - {{activeTrack.name}}
+        </ion-col>
+        <ion-col size='12'>
+          <ion-range #range [(ngModel)]="progress" max="100" colo="success" (touchend)="seek()" (mouseup)="seek()">
+          </ion-range>
+        </ion-col>
+          <ion-col size="4">
+            <ion-button fill="clear" (click)="prev()" color="light">
+              <ion-icon slot="icon-only" name="skip-backward"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="4" *ngIf="!isPlaying">
+            <ion-button fill="clear" (click)="togglePlayer(false)" color="light">
+              <ion-icon slot="icon-only" name="play"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="4" *ngIf="isPlaying">
+            <ion-button fill="clear" (click)="togglePlayer(true)" color="light">
+              <ion-icon slot="icon-only" name="pause"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="4" *ngIf="isPlaying">
+            <ion-button fill="clear" (click)="next()" color="light">
+              <ion-icon slot="icon-only" name="skip-forward"></ion-icon>
+            </ion-button>
+          </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </div>
+</ion-content>

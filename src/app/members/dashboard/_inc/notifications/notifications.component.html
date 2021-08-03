@@ -1,0 +1,40 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle slogan componentTitle>Quoi de beau ?</ion-card-subtitle>
+    <ion-card-title class="titleColor">Notifications</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-list *ngIf = "notifications.length > 0">
+      <ion-item-sliding *ngFor = "let data of notifications">
+        <ion-item>
+          <ion-avatar slot="start" [routerLink]="['/contactDashboard',data.senderId]">
+            <img class="avatar" src="assets/img/bitmoji.png">
+          </ion-avatar>
+          <ion-label *ngIf="!data.read" [routerLink]="['/contactDashboard',data.senderId]">
+            <h2 class="dateFormat">{{timeFromNow(data.created)}}</h2>
+            <p style="font-size:12px;">{{data.message}}</p>
+          </ion-label>
+          <ion-label *ngIf="data.read" [routerLink]="['/contactDashboard',data.senderId]">
+            <h2 class="dateFormat" style="color:rgb(168, 168, 168);">{{timeFromNow(data.created)}}</h2>
+            <p style="color:rgb(168, 168, 168); font-size:12px;">{{data.message}}</p>
+          </ion-label>
+          <ion-button *ngIf="!checkInArray(userArr,data.senderId)" color="success" (click)="followUser(data.senderId)">S'abonner</ion-button>
+          <ion-button *ngIf="checkInArray(userArr,data.senderId)" color="medium" (click)="unfollowUser(data.senderId)">Abonné</ion-button>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)= "deleteNotification(data)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    
+    
+    <div class = "row" *ngIf = "notifications.length == 0">
+      <h3 class="listHeader text">
+        Vous n'avez aucune notification
+      </h3>
+    </div>
+  </ion-card-content>
+</ion-card>

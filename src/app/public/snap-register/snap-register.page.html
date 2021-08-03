@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar class="secondBg">
+    <ion-title class="pageTitle"><img src="assets/img/signup.png" style="height:20px; width:auto; margin-top:10px;" /></ion-title>
+    <ion-button class="toolbarButton" fill="clear" color="medium" routerLink="/home" routerDirection="back">
+      <ion-icon name="ios-arrow-back"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen id="yellowBg">
+  <div class="ion-padding ion-text-center mainDiv">
+    <p class="slogan gradientKick">{{slogan}}</p>
+    <div class="marginUnderSlg"></div>
+    <form (ngSubmit)="registerForm()">
+
+      <!-- PSEUDO INPUT -->
+      <ion-input name="pseudo" type="text" [pattern]="pseudoPattern" #pseudo="ngModel" [(ngModel)]="register.pseudo" required (ionFocus)="pseudoInpFoc()" (ionBlur)="pseudoInpBlur()" placeholder="{{pseudoInput}}" class="usernameInput bgInput"></ion-input>
+      <ion-icon *ngIf = "pseudo.errors?.required" style="color:transparent;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!pseudo.errors?.pattern && !pseudo.errors?.required" style="color:green;" name="checkmark-circle"></ion-icon>
+      <ion-icon *ngIf = "pseudo.errors?.pattern" style="color:red;" name="close-circle"></ion-icon>
+      <p class="inputMsg" *ngIf="pseudoOnFocus">{{pseudoMsg}}</p>
+      <div class="marginBetweenInputs"></div>
+
+      <!-- USERNAME INPUT -->
+      <ion-input name="username" type="text" [pattern]="usernamePattern" #username="ngModel" [(ngModel)]="register.username" required (ionFocus)="usernameInpFoc()" (ionBlur)="usernameInpBlur()" placeholder="{{usernameInput}}" class="usernameInput bgInput"></ion-input>
+      <ion-icon *ngIf = "username.errors?.required" style="color:transparent;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!username.errors?.pattern && !username.errors?.required" style="color:green;" name="checkmark-circle"></ion-icon>
+      <ion-icon *ngIf = "username.errors?.pattern" style="color:red;" name="close-circle"></ion-icon>
+      <p class="inputMsg" *ngIf="usernameOnFocus">{{usernameMsg}}</p>
+      <div class="marginBetweenInputs"></div>
+
+      <!-- EMAIL INPUT -->
+      <ion-input name="email" type="email" [pattern]="emailPattern" #email="ngModel" [(ngModel)]="register.email" required (ionFocus)="emailInpFoc()" (ionBlur)="emailInpBlur()" placeholder="{{emailInput}}" class="emailInput bgInput"></ion-input>
+      <ion-icon *ngIf = "email.errors?.required" style="color:transparent;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!email.errors?.pattern && !email.errors?.required" style="color:green;" name="checkmark-circle"></ion-icon>
+      <ion-icon *ngIf = "email.errors?.pattern" style="color:red;" name="close-circle"></ion-icon>
+      <p class="inputMsg" *ngIf="emailOnFocus">{{emailMsg}}</p>
+      <div class="marginBetweenInputs"></div>
+
+      <!-- PASSWORD INPUT -->
+      <ion-input name="password" type="password" [pattern]="passwordPattern" #password="ngModel" [(ngModel)]="register.password" required (ionFocus)="passwordInpFoc()" (ionBlur)="passwordInpBlur()" placeholder="{{passwordInput}}" class="passInput bgInput"></ion-input>
+      <ion-icon *ngIf = "password.errors?.required" style="color:transparent;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!password.errors?.pattern && !password.errors?.required" style="color:green;" name="checkmark-circle"></ion-icon>
+      <ion-icon *ngIf = "password.errors?.pattern" style="color:red;" name="close-circle"></ion-icon>
+
+      <!-- CONFIRM PASSWORD INPUT -->
+      <ion-input name="confirmPassword" type="password" [pattern]="passwordPattern" #passwordConfirm="ngModel" [(ngModel)]="register.passwordConfirm" required (ionFocus)="passwordInpFoc()" (ionBlur)="passwordInpBlur()" (ionChange)="passwordConfChange()" placeholder="{{passwordConfirmInput}}" class="passInput bgInput"></ion-input>
+      <ion-icon *ngIf = "passwordConfirm.errors?.required" style="color:transparent;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!passwordConfirm.errors?.pattern && !passwordConfirm.errors?.required && passwordMatches" style="color:green;" name="checkmark-circle"></ion-icon>
+      <ion-icon *ngIf = "passwordConfirm.errors?.pattern && !passwordMatches" style="color:red;" name="close-circle"></ion-icon>
+      <ion-icon *ngIf = "!passwordConfirm.errors?.pattern && !passwordMatches && !passwordConfirm.errors?.required" style="color:red;" name="close-circle"></ion-icon>
+      <p class="inputMsg" *ngIf="passwordOnFocus">{{passwordMsg}}</p>
+      <div class="marginBetweenInputs"></div>
+      <!-- SUBMIT -->
+      <ion-button *ngIf="!passwordConfirm.errors?.pattern && !passwordConfirm.errors?.required && !password.errors?.pattern && !password.errors?.required && !email.errors?.pattern && !email.errors?.required && !username.errors?.pattern && !username.errors?.required && passwordMatches" expand="full" color="tertiary" type="submit">{{loginBtn}}</ion-button>
+      <ion-button *ngIf="passwordConfirm.errors?.pattern || passwordConfirm.errors?.required || password.errors?.pattern || password.errors?.required || email.errors?.pattern || email.errors?.required || username.errors?.pattern || username.errors?.required || !passwordMatches" expand="full" color="tertiary" disabled>{{loginBtn}}</ion-button>
+      <div class="marginBetweenInputs"></div>
+    </form>
+
+    <!-- CGU -->
+    <div class="separator">
+      <p class="footerFormMsg">{{signupMsg}} <br><a href="http://kickapp.fr/cgu">{{signupLink}} <ion-icon name="open"></ion-icon></a></p>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</ion-content>

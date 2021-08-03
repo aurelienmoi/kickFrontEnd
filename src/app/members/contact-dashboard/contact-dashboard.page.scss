@@ -1,0 +1,160 @@
+////////////////////// ELEMENTS PLACEMENT //////////////////////
+
+.staticContent {
+    top: 0;
+}
+
+.underStatic {
+    height:80px;
+}
+
+.behindHeader {
+    height:60px;
+}
+
+.followers {
+    position: relative;
+    top: -20px;
+    color:whitesmoke;
+    width:90px;
+}
+
+.following {
+    position: relative;
+    top: -20px;
+    left:10px;
+    color:whitesmoke;
+    width:90px;
+}
+
+.width100 {
+    width:100%;
+    position:absolute;
+    z-index:300;
+    background-color:rgb(19,19,19);
+}
+
+////////////////////// BITMOJI CONTAINER //////////////////////
+
+.bmjLogo {
+    width:65%;
+    margin:auto;
+    height:auto;
+    border-radius:40%;
+}
+
+.bmjContainer {
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    border:1px solid whitesmoke;
+    text-align:center;
+    margin:auto;
+    padding-top:3px;
+}
+
+.bitmojiContainer {
+    height:80px;
+}
+
+.spaceBmj {
+    margin-top:4px;
+}
+
+////////////////////// PROFIL INFOS //////////////////////
+
+.stuck {
+    margin-bottom:10px;
+}
+
+.info { font-size:14px; margin-top:2px; width:100%;}
+
+.pseudo { font-size:18px; letter-spacing:1.5px; color:rgb(179, 179, 179); }
+.pseudoSeparator { margin:auto; width:100%; border-bottom:1px solid rgb(179, 179, 179);}
+.infoSeparator { width:100%; border-bottom:1px solid rgb(179, 179, 179);}
+.usernameContent { margin-top:0; }
+
+.dataForm {
+    padding-top:5px;
+    height:30px;
+}
+
+////////////////////// PROFIL MENU //////////////////////
+
+////////////////////// ELEMENTS PLACEMENT //////////////////////
+
+.staticToolbar {
+    position: fixed;
+    top: 245px;
+    width:100%;
+    z-index:3;
+    margin-top:-5px;
+}
+
+.paddingTop {
+    padding-top:15px;
+}
+
+////////////////////// PROFIL MENU //////////////////////
+
+.profilMenu {
+    list-style-type: none;
+    padding:0;
+    padding-bottom:5px;
+    text-align:left;
+    border-bottom:1px solid grey;
+    margin-bottom:0px;
+}
+
+.profilMenu li {
+    display:inline-block;
+    margin:5px;
+    font-weight:bold;
+}
+
+.profilMenuSeparator {
+    color:grey;
+}
+
+.notifications {
+    position:absolute;
+    right:5px;
+    top:0;
+    font-size:10px;
+}
+
+////////////////////// LINK COLOR //////////////////////
+
+.profilLink {
+    text-decoration:none;
+    color:#D6CEF4;
+}
+
+.profilMenu .active {
+    color:whitesmoke;
+}
+
+.opponentInformations
+{
+    padding-top: 15px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.opponentInformations .opponentUsername
+{
+    letter-spacing: 1.5px;
+    font-size: 18px;
+    color: #D6CEF4;
+    padding-bottom: 10px;
+}
+
+.opponentInformations .opponentBiography
+{
+    font-size: 15px;
+    color: #D6CEF4;
+    padding-bottom: 15px;
+}

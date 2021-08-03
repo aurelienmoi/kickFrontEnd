@@ -1,0 +1,55 @@
+<ion-header *ngIf="!onLoading">
+  <ion-toolbar class="kickBg">
+    <ion-title class="icon whiteSmoke">Ajouter</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" class="lightKick" autoHide='false'>
+        <ion-icon class="settingBtn" name="arrow-dropdown"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center mainDiv" style="display: flex; align-items: center; justify-content: center; background: rgb(5,3,31);
+  background: linear-gradient(180deg, rgba(5,3,31,1) 0%, rgba(5,3,31,1) 18%, rgba(84,9,123,1) 77%, rgba(92,99,168,1) 100%); height:100%; background-attachment:fixed;">
+    <ion-card>
+      <ion-card-header *ngIf="!successfull">
+        <ion-card-title color="light">
+          Ajouter une bande son
+        </ion-card-title>
+      </ion-card-header>
+      <div style="width:100%;">
+        <img style="width:50%; height:auto; text-align:center; margin:auto;" src="assets/img/defaultCover.png" />
+      </div>
+      <ion-card-header *ngIf="successfull">
+        <ion-card-title>
+          Bande son ajoutée avec succès !
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form *ngIf="!successfull" (ngSubmit)="submitForm()">
+          <ion-card-subtitle>
+            Choisissez un titre
+          </ion-card-subtitle>
+          <ion-input (ionFocus)="inpFocus()" [(ngModel)]="title" placeholder="exemple : All eyes on me" type="text" name="title" minlength="3" maxlength="30" required="true"></ion-input>
+          <div class="marginBetweenInputs"></div>
+          <ion-card-subtitle>
+            Séléctionnez le fichier à importer
+          </ion-card-subtitle>
+          <ion-button *ngIf="fileAdded" color="medium" fill="clear" strong>
+            <ion-icon name="checkmark-circle-outline" color="success"></ion-icon>&nbsp;Bande son ajoutée avec succès
+          </ion-button>
+          <ion-button *ngIf="!fileAdded" color="medium" fill="clear" strong (click)="upload()">
+            <ion-icon name="add-circle-outline"></ion-icon>&nbsp;Importer une bande son
+          </ion-button>
+          <div class="marginBetweenInputs"></div>
+          <ion-button disabled *ngIf="wrongTitle" expand="full" color="danger">{{wrongTitleMsg}}</ion-button>
+          <ion-button disabled *ngIf="wrongForm" expand="full" color="danger">{{wrongFormMsg}}</ion-button>
+          <ion-button *ngIf="!wrongForm && !wrongTitle" type="submit" expand="full" size="medium" expand="block">Ajouter</ion-button>
+        </form>
+        <p *ngIf="successfull" (click)="dismiss()">Retour</p>
+      </ion-card-content>
+    </ion-card>
+    <img *ngIf="onLoading" src="assets/img/loading.gif" class="loadingImg" />
+  </div>
+</ion-content>

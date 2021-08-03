@@ -1,0 +1,38 @@
+
+            <form [formGroup]="postForm" (ngSubmit)="submitPost()" >
+                <ion-card class="formDiv ios hydrated ">
+                    <ion-input id="textarea1" formControlName="post" class="bgInput paddedInput" placeholder="Postez votre actu" ></ion-input>
+                    <ion-button type = submit color='dark' [disabled]='postForm.invalid'>
+                        Poster
+                    </ion-button>
+
+
+                </ion-card>
+            </form>
+
+<ul *ngFor="let post of posts">
+
+      <ion-card class="formDiv ios hydrated ">
+        <div class="bmjContainer">
+          <img src="assets/img/bitmoji.png" alt="" class="bmjLogo">
+        </div>
+        <p  class="tilte">{{post.username}}</p>
+        <p class="time">{{timeFromNow(post.created)}}
+
+        </p>
+        <div class="card-content">
+          <p style="color: white;">{{post.post}}</p>
+        </div>
+        <div class = "card-action">
+          <i (click)="likePost(post)" [ngClass]="(!checkInLikesArray(post.likes,user.username)) ? 'notLiked' : 'liked'" class ="material-icons">thumb_up</i>
+          <span class ="iconSpan">
+            {{post.totalLikes}}
+          </span>
+          <i class ="material-icons" [ngClass]="(!checkInLikesArray(post.comments,user.username)) ? 'notLiked' : 'liked'"  (click)="openCommentBox(post)">chat</i>
+          <span class ="iconSpan">
+            {{post.comments.length}}
+          </span>
+        </div>
+      </ion-card>
+
+</ul>

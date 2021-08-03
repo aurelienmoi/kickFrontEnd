@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar class="kickBg">
+    <ion-title class="icon whiteSmoke">Abonnés</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" class="lightKick" autoHide='false'>
+        <ion-icon class="settingBtn" name="arrow-dropdown"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center mainDiv">
+    <div *ngFor="let user of userFollowers">
+      <ion-item class="transparentToolbar" [routerLink]="['/contactDashboard',user._id]" (click)="dismiss()">
+        <div class="avatarContainer"><img src="assets/img/bitmoji.png" class="avatar" /></div>
+        <ion-label><a class="titleColor" (click)="dismiss()">{{user.pseudo}}</a></ion-label>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

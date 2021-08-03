@@ -1,0 +1,31 @@
+////////////////////// SIZING //////////////////////
+
+ion-footer, ion-toolbar, ion-button {
+    height:55px;
+    margin:0;
+}
+
+ion-title {
+    height:60px;
+}
+
+ion-icon {
+    font-size:30px;
+}
+
+.avatarContainer {
+    border:2px solid whitesmoke;
+}
+
+////////////////////// POSITION //////////////////////
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    z-index:300;
+}
+
+.behindFooter {
+    height:60px;
+}

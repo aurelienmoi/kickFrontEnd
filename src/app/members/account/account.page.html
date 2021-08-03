@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar class="kickBg">
+    <ion-title class="icon whiteSmoke">Mon compte</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" class="lightKick" autoHide='false'>
+        <ion-icon class="settingBtn" name="arrow-dropdown"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center mainDiv">
+    <ion-card color="dark">
+      <ion-card-header color="dark">
+        <ion-card-subtitle>
+          sheepbild
+        </ion-card-subtitle>
+        <ion-card-title>
+          Mon compte
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Séléctionne les données de ton choix pour les modifier.</p>
+        <ion-item class="transparentToolbar" (click)="changePseudo()">
+          <ion-label color="light" class="labelTitle">
+            Nom
+          </ion-label>
+          <ion-label color="medium" class="labelTitle" slot="end">
+            Tommix la Trix
+          </ion-label>
+        </ion-item>
+        <ion-item class="transparentToolbar" (click)="changeEmail()">
+          <ion-label color="light" class="labelTitle">
+            Email
+          </ion-label>
+          <ion-label color="medium" class="labelTitle" slot="end">
+            sheepbild@gmail.com
+          </ion-label>
+        </ion-item>
+        <ion-item class="transparentToolbar" (click)="changePhone()">
+          <ion-label color="light" class="labelTitle">
+            Tél.
+          </ion-label>
+          <ion-label color="medium" class="labelTitle" slot="end">
+            0781937758
+          </ion-label>
+        </ion-item>
+        <ion-item class="transparentToolbar" (click)="changePassword()">
+          <ion-label color="light" class="labelTitle">
+            Mot de passe
+          </ion-label>
+          <ion-label color="medium" slot="end" class="labelTitle">
+            ***********
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+      <ion-card-subtitle>
+        Confirmer mon email
+        <ion-badge color="danger">1</ion-badge>
+      </ion-card-subtitle>
+      <ion-card-content>
+        <form>
+            <ion-input value="sheepbild@gmail.com" type="text" name="username" minlength="3" maxlength="30" required="true"></ion-input>
+            <div class="marginBetweenInputs"></div>
+            <ion-button type="submit" expand="full" size="medium" expand="block">Envoyer un lien de confirmation</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

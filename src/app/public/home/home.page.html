@@ -1,0 +1,21 @@
+<ion-content fullscreen id="yellowBg" padding>
+  <div class="ion-padding ion-text-center mainDiv">
+      <p class="slogan mainSlogan gradientKick">{{slogan}}</p>
+    <img src="assets/img/mainLogo.png" class="mainLogo">
+    <div class="marginUnderSlg"></div>
+    <!-- CONNECTION BUTTON -->
+    <ion-button expand="block" fill="outline" color="medium" routerLink="/login" routerDirection="forward">{{loginBtn}}</ion-button>
+    <div class="marginBetweenBtns"></div>
+    <!-- SIGNUP BUTTON -->
+    <ion-button expand="block" color="light" routerLink="/register" routerDirection="forward">{{signUpLink}}</ion-button>
+    <!-- OTHER OPTIONS -->
+    <p class="slogan gradientKick">Ou connecte toi avec</p>
+    <ion-button color="snapchat" shape="round" (click) = "connectSnap()"  routerDirection="forward"> <!-- routerLink="/snap-register"-->
+      <img src="assets/icon/snapchat.png" class="snapchatLogo">
+      <span class="snapchat">Snapchat</span>
+    </ion-button>
+
+  </div>
+  <app-footer></app-footer>
+</ion-content>
+

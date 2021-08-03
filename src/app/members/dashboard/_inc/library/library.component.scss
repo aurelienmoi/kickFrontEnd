@@ -1,0 +1,68 @@
+////////////////////// MUSIC ITEM //////////////////////
+
+.musicItem {
+    background-color:none;
+    padding:5px;
+    width:100%;
+    text-align:left;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.infoIcon {
+    font-size:80px;
+    color:lightgrey;
+    margin-top:50px;
+}
+
+////////////////////// COVER BLOCK //////////////////////
+
+.coverBlock {
+    width:55px;
+    margin-left:5px;
+    margin-right:10px;
+}
+
+////////////////////// INFO BLOCK //////////////////////
+
+.infosBlock {
+    height:55px;
+    position:absolute;
+    margin-top:-12px;
+}
+
+.musicLabel, .artistLabel {
+    display:inline-block;
+    font-size:13px;
+}
+
+.statsBlock {
+    height:55px;
+    position:absolute;
+    left:180px;
+    line-height:37px;
+}
+
+.controlBlock {
+    height:55px;
+    position:absolute;
+    right:0;
+    line-height:37px;
+}
+
+.noPadding {
+    padding:-10px !important;
+}
+
+.marginRight {
+    margin-right:10px;
+}
+
+.musicLabel, .artistLabel {
+    display:inline-block;
+    font-size:13px;
+}
+
+.musicLabel {
+    margin-bottom:10px;
+}

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar class="kickBg">
+      <!-- <a class="verticalAlign" [routerLink]="['/contactDashboard',receiverId]" (click)="dismiss()"></a> -->
+      <ion-title slot="end" class="icon whiteSmoke" [routerLink]="['/contactDashboard',receiverId]" (click)="dismiss()">
+          <img class="avatar" src="assets/img/bitmoji.png" style="width:25px; height:auto; vertical-align:-12px; margin-right:5px;">
+        {{receiverData.pseudo}}
+      </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" class="lightKick" autoHide='false'>
+        <ion-icon class="settingBtn" name="arrow-dropdown"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="secondBg" (ionScroll)="logScrolling($event)">
+  <div class="ion-text-center mainDiv secondBg">
+    <div class="bitmojiContainer secondBg">
+      <div class="bmjContainer inlineBlock"><a><img src="assets/img/bitmoji.png" class="bmjLogo"></a></div>
+    </div>
+    <p>{{receiverData.pseudo}}</p>
+      <div class="rowDiv secondBg" ngx-auto-scroll lock-y-offset="10" observe-attributes>
+        <div class="message-wrapper secondBg" *ngFor="let message of messagesArray">
+          <p>{{message.createdAtFormated}}</p>
+          <div class="left" *ngIf="userData.username !== receiverName && userData.username !== message.senderName">
+            <div class="chat-bubble left slide-left">
+              <div class="message">{{message.body}}</div>
+              <p class="timeMsgLeft">{{timeHm(message.createdAt)}}</p>
+            </div>
+          </div>
+  
+          <div class="right" *ngIf="userData.username === message.senderName">
+            <div class="chat-bubble right slide-right">
+              <div class="message">{{message.body}}</div>
+              <p class="timeMsgRight">{{timeHm(message.createdAt)}}</p>
+            </div>
+          </div>
+          <div class="cf"></div>
+        </div>
+        <div class="left" *ngIf="typing">
+          <div class="chat-bubble left slide-left">
+            <div class="message"><img class="isTyping" src="assets/img/isTyping.gif"></div>
+          </div>
+        </div>
+        <div class="underCard"></div>
+      </div>
+    <div class="card secondBg">
+      <form class="typingForm thirdBg" (ngSubmit)="SendMessage()">
+        <div class="formPlacement">
+          <ion-input color="light" name="message" class="messageInput" [(ngModel)]="message" (keypress)="isTyping()" placeholder="Votre message..."></ion-input>
+          <ion-button color="light" fill="clear" type="submit"><ion-icon name="md-send"></ion-icon></ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

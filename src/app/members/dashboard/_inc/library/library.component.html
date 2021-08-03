@@ -1,0 +1,82 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle slogan componentTitle>Lier vos plateforme</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-avatar>
+              <img src="assets/img/platforms/spotify.png">
+            </ion-avatar>
+          </ion-col>
+          <ion-col>
+            <ion-avatar>
+              <img src="assets/img/platforms/deezer.png">
+            </ion-avatar>
+          </ion-col>
+          <ion-col>
+            <ion-avatar>
+              <img src="assets/img/platforms/apple-music.png">
+            </ion-avatar>
+          </ion-col>
+          <ion-col>
+            <ion-avatar>
+              <img src="assets/img/platforms/youtube.png">
+            </ion-avatar>
+          </ion-col>
+          <ion-col>
+            <ion-avatar>
+              <img src="assets/img/platforms/soundcloud.png">
+            </ion-avatar>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-card-content>
+</ion-card>
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle slogan componentTitle>Librairie</ion-card-subtitle>
+    <ion-card-title class="titleColor">Vos musiques</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <li *ngFor = "let music of libraryTest">
+      <div class="musicItem">
+        <a [routerLink]="['/musicPlayer',music.musicId]">
+          <div class="inlineBlock coverBlock">
+            <img src="assets/img/defaultCover.png" />
+          </div>
+          <div class="inlineBlock infosBlock">
+            <p style="width:90px; white-space:nowrap; overflow: hidden;">
+              <span class="musicLabel" style="text-transform:capitalize;">{{music.name}}</span><br />
+              <span class="artistLabel">{{pseudo}}</span>
+            </p>
+          </div>
+          <div class="inlineBlock statsBlock">
+            <p>
+              <span class="artistLabel" style="margin-bottom:-20px;">974 streams <ion-progress-bar color="success" value="0.5"></ion-progress-bar></span>
+            </p>
+          </div>
+        </a>
+        <div class="inlineBlock controlBlock">
+          <p>
+            <ion-button (click)="dislikeMusic(music.musicId)" fill="clear" size="small" class="noPadding"><ion-icon color="light" name="heart-empty"></ion-icon></ion-button>
+            <ion-button fill="clear" size="small" class="noPadding" (click)="presentActionSheet()"><ion-icon color="light" name="more"></ion-icon></ion-button>
+          </p>
+        </div>
+      </div>
+    </li>
+    <div *ngIf="!libraryTest.length">
+      <ion-icon class="infoIcon" name="information-circle-outline"></ion-icon>
+      <p>Vous n'avez pas encore publié de musique</p>
+    </div>
+    
+    
+    <div class="upload">
+      <ion-button color="medium" fill="clear" strong (click)=presentModalUpload()>
+        <ion-icon name="add-circle-outline"></ion-icon>&nbsp;Ajouter une musique
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>

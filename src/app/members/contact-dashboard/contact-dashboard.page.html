@@ -1,0 +1,98 @@
+<app-top-toolbar></app-top-toolbar>
+
+<ion-header>
+  <ion-toolbar class="transparentToolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard" color="light" autoHide='false' text="" icon="ios-arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="dataLoaded" class="icon titleColor">{{ennemyUsername}}</ion-title>
+    <ion-title *ngIf="!dataLoaded" class="icon titleColor">
+      <ion-spinner name="dots"></ion-spinner>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button disabled="false" class="lightKick" autoHide='false' (click)="presentPopover($event)">
+        <ion-icon class="settingBtn" name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar class="kickBg">
+    <ion-segment color="medium" mode="md">
+      <ion-segment-button mode="md" checked value="home" (click)="onMain()">
+        <ion-label color="light">Profil</ion-label>
+      </ion-segment-button>
+      <ion-segment-button mode="md" value="library" (click)="onLibrary()">
+        <ion-label color="light">Musiques</ion-label>
+      </ion-segment-button>
+      <!--<ion-segment-button mode="md" value="notifications" (click)="onNotifications()">
+        <ion-label color="light">Notifs</ion-label>
+        <ion-badge class="notifications" color="danger">66</ion-badge>
+      </ion-segment-button>-->
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center">
+    <div class="width100 ion-text-center mainDiv" style="background-image:url(assets/img/bgtest.jpg); min-height:100vh; background-size:cover; background-attachment: fixed;">
+      <div id="appMain" *ngIf="isOnMain">
+        <ion-card style="background:rgb(5, 3, 31);">
+          <ion-card-content>
+            <!--------------- BITMOJI CONTAINER --------------->
+            <div class="spaceBmj"></div>
+            <div class="bitmojiContainer">
+              <p *ngIf="dataLoaded" class="followers inlineBlock">Abonnés<br />
+                <ion-badge color="light">{{followers}}</ion-badge>
+              </p>
+              <p *ngIf="!dataLoaded" class="followers inlineBlock">Abonnés <br />
+                <ion-skeleton-text animated style="margin: 20%; width:50%; text-align:center;"></ion-skeleton-text>
+              </p>
+              <div class="bmjContainer inlineBlock"><a><img [src]="bitmojiLink"
+                    class="bmjLogo"></a></div>
+              <p *ngIf="dataLoaded" class="following inlineBlock">Abonnements<br />
+                <ion-badge color="light">{{following}}</ion-badge>
+              </p>
+              <p *ngIf="!dataLoaded" class="following inlineBlock">Abonnements <br />
+                <ion-skeleton-text animated style="margin: 20%; width:50%; text-align:center;"></ion-skeleton-text>
+              </p>
+            </div>
+
+            <!--------------- PROFIL INFORMATIONS --------------->
+            <!-- If the user has already chosen a pseudo : -->
+            <p class="stuck">
+              <a *ngIf="dataLoaded"><span
+                  class="pseudo">{{ennemyPseudo}}</span></a>
+              <a *ngIf="!dataLoaded"><span class="pseudo">
+                  <ion-skeleton-text animated style="width:100px; text-align:center; margin:auto;"></ion-skeleton-text>
+                </span></a>
+            </p>
+            <p class="info">
+              <a *ngIf="dataLoaded" class="info greyKick">{{ennemyBiography}}</a>
+              <a *ngIf="!dataLoaded" class="info greyKick">
+                <ion-skeleton-text animated style="width:300px; text-align:center; margin:auto;"></ion-skeleton-text>
+              </a>
+            </p>
+            <!--
+              <app-dashboard-map *ngIf="dataLoaded" [userId]="userDataDisplay['id']"></app-dashboard-map>
+            -->
+            <!--<ion-chip *ngIf="dataLoaded && roles.listener" outline color="primary">
+              <ion-icon *ngIf="dataLoaded && roles.listener" name="musical-notes" color="primary"></ion-icon>
+              <ion-label *ngIf="dataLoaded && roles.listener">Auditeur</ion-label>
+            </ion-chip>
+            <ion-chip *ngIf="dataLoaded && roles.rapper"  outline color="primary">
+              <ion-icon *ngIf="dataLoaded && roles.rapper"  name="microphone" color="primary"></ion-icon>
+              <ion-label *ngIf="dataLoaded && roles.rapper">Rappeur</ion-label>
+            </ion-chip>
+            <ion-chip *ngIf="dataLoaded && roles.beatmaker"  outline color="secondary">
+              <ion-icon *ngIf="dataLoaded && roles.beatmaker" name="save" color="secondary"></ion-icon>
+              <ion-label *ngIf="dataLoaded && roles.beatmaker">Beatmaker</ion-label>
+            </ion-chip>-->
+            <div style="margin-top:15px;"></div>
+            <app-dashboard-map *ngIf="dataLoaded" [userId]="ennemyUserId"></app-dashboard-map>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <app-library-profil *ngIf="isOnLibrary"></app-library-profil>
+      <app-nav-bar></app-nav-bar>
+    </div>
+  </div>
+</ion-content>

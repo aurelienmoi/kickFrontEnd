@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar class="kickBg">
+    <ion-title class="icon whiteSmoke">Communauté</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/dashboard" class="lightKick" autoHide='false'>
+        <ion-icon class="settingBtn" name="ios-arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="yellowBg">
+  <div class="ion-text-center mainDiv">
+      <ion-item class="transparentToolbar" *ngFor="let user of users">
+        <div class="avatarContainer"><img src="assets/img/bitmoji.png" class="avatar" /></div>
+        <ion-label><a class="titleColor" [routerLink]="['/contactDashboard',user._id]">{{user.username}}</a></ion-label>
+
+        <ion-button color="light" fill="clear" *ngIf="!checkInArray(userArr,user._id)" (click)="followUser(user)">
+          <ion-icon name="add-circle-outline" class="marginRight_5"></ion-icon>
+        </ion-button>        
+        <ion-button color="light" fill="clear" *ngIf="checkInArray(userArr,user._id)" (click)="unfollowUser(user)">
+          <ion-icon name="close-circle" class="marginRight_5"></ion-icon>
+        </ion-button>
+
+        <ion-button color="light" fill="clear" (click)="more(user._id, user.username)">
+          <ion-icon src="assets/svg/ellipsis-vertical-sharp.svg" class="marginRight_5"></ion-icon>
+        </ion-button>
+      </ion-item>
+  </div>
+
+  <app-nav-bar></app-nav-bar>
+
+</ion-content>
